@@ -11,7 +11,7 @@ export class UserService {
 
   async createUser(uid: string, affilication: string): Promise<any> {
     try {
-      const caClient = this.caUtilsService.buildCAClient(this.ccp, 'ca.org1.example.com');
+      const caClient = this.caUtilsService.buildCAClient();
       const wallet = await this.appUtilsService.buildWallet();
       await this.caUtilsService.registerAndEnrollUser(caClient, wallet, 'Org1MSP', uid, affilication);
 

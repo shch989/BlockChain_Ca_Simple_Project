@@ -10,16 +10,13 @@ import { AdminRequest } from './dtos/AdminResponse.dto';
 export class AdminService {
   constructor(private readonly appUtilsService: AppUtilsService, private readonly caUtilsService: CAUtilsService) { }
 
-  private readonly ccp = this.appUtilsService.buildCCPOrg1()
-  private readonly mspOrg1 = 'Org1MSP'
-
   async createAdmin(adminData: AdminRequest): Promise<any> {
     const aid = adminData.adminid 
     const apw = adminData.adminpw
     try {
-      const caClient = this.caUtilsService.buildCAClient(this.ccp, 'ca.org1.example.com');
+      const caClient = this.caUtilsService.buildCAClient();
       const wallet = await this.appUtilsService.buildWallet();
-      await this.caUtilsService.enrollAdmin(caClient, wallet, this.mspOrg1, aid, apw);
+      await this.caUtilsService.enrollAdmin(caClient, wallet, aid, apw);
 
       const rObj = { result: "success", message: "An admin id is created" }
       return rObj

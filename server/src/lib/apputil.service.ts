@@ -6,7 +6,7 @@ import * as path from 'path';
 @Injectable()
 export class AppUtilsService {
   private readonly ccpPath = path.resolve('..', 'server', 'src', 'config', 'connection-org1.json');
-  private readonly walletPath = path.join('..', 'server', 'src', '..', 'wallet')
+  private readonly walletPath = path.join('..', 'server', 'src', 'wallet')
 
   buildCCPOrg1(): any {
     const fileExists = fs.existsSync(this.ccpPath);

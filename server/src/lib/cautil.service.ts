@@ -1,13 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import * as FabricCAServices from 'fabric-ca-client';
 import { Wallet } from 'fabric-network';
+import { AppUtilsService } from './apputil.service';
 
 @Injectable()
 export class CAUtilsService {
-  private adminUserId = 'admin';
+  constructor(private readonly appUtilsService: AppUtilsService) {}
+  private readonly ccp = this.appUtilsService.buildCCPOrg1()
+  private readonly adminUserId = 'admin';
+  private readonly caHostName = 'ca.org1.example.com'
+  private readonly mspOrg1 = 'Org1MSP'
 
-  buildCAClient(ccp, caHostName): FabricCAServices {
-    const caInfo = ccp.certificateAuthorities[caHostName];
+  buildCAClient(): FabricCAServices {
+    const caInfo = this.ccp.certificateAuthorities[this.caHostName];
     const caTLSCACerts = caInfo.tlsCACerts.pem;
     const caClient = new FabricCAServices(caInfo.url, { trustedRoots: caTLSCACerts, verify: false }, caInfo.caName);
 
@@ -15,7 +20,7 @@ export class CAUtilsService {
     return caClient;
   }
 
-  async enrollAdmin(caClient: FabricCAServices, wallet: Wallet, orgMspId: string, adminId: string, adminPasswd: string): Promise<void> {
+  async enrollAdmin(caClient: FabricCAServices, wallet: Wallet, adminId: string, adminPasswd: string): Promise<void> {
     try {
       if (adminId != this.adminUserId) {
         throw new Error('Admin ID does not match.');
@@ -33,7 +38,7 @@ export class CAUtilsService {
           certificate: enrollment.certificate,
           privateKey: enrollment.key.toBytes(),
         },
-        mspId: orgMspId,
+        mspId: this.mspOrg1,
         type: "X.509",
       };
 
