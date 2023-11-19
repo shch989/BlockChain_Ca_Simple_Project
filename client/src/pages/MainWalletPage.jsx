@@ -44,7 +44,7 @@ const MainWalletPage = () => {
   };
   return (
     <MainBackground>
-      <MainTitle>자산관리 사이트에 오신 것을 환영합니다.</MainTitle>
+      <MainTitle>지갑 프로토타입 프로젝트</MainTitle>
       <ButtonBox>
         <Button onClick={handleAdminWalletClick}>관리자 지갑 생성</Button>
         <Button onClick={handleUserWalletClick}>사용자 지갑 생성</Button>

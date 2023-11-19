@@ -1,4 +1,4 @@
 export class userRequestDto {
-  userid: string;
+  userId: string;
   affilication: string;
 }

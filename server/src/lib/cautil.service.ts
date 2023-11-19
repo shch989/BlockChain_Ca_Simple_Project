@@ -100,7 +100,7 @@ export class CAUtilsService {
       console.log(`Successfully registered and enrolled user ${userId} and imported it into the wallet`);
     } catch (error) {
       console.error(`Failed to register user: ${error}`);
-      throw new Error(`Failed to register user: ${error}`);
+      throw new Error(error);
     }
   }
 }

@@ -3,6 +3,6 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-  "userid": "semi",
-  "affilication": "ca.org1.example.com"
+  "userId": "appuser",
+  "affilication": "org1.department1"
 }

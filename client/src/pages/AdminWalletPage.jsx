@@ -63,9 +63,9 @@ const AdminWalletPage = () => {
 
   return (
     <MainBackground>
-      <MainTitle>관리자 인증서 발급 페이지</MainTitle>
+      <MainTitle>관리자 지갑</MainTitle>
       <Input
-        label="아이디"
+        label="관리자ID"
         type="text"
         id="adminid"
         value={adminId}

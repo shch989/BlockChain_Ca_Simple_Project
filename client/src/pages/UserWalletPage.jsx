@@ -7,11 +7,7 @@ import BackMainLink from '../components/MainBackLink';
 import MainBackground from '../components/MainBackground';
 import MainTitle from '../components/MainTitle';
 import Modal from '../components/UI/Modal';
-
-const ResultParagraph = styled.p`
-  color: #333;
-  font-weight: bold;
-`;
+import ResultTable from '../components/ResultTable';
 
 const Button = styled.button`
   display: block;
@@ -40,19 +36,22 @@ const UserWalletPage = () => {
   const [userId, setUserId] = useState('');
   const [affilication, setAffilication] = useState('');
   const [userResult, setUserResult] = useState('');
+  const [success, setSuccess] = useState(false)
   const [showModal, setShowModal] = useState(false);
 
   const handleAdminSubmit = async () => {
     try {
       const response = await axios.post('http://localhost:8080/user', {
-        userid: userId,
+        userId,
         affilication,
       });
 
       setUserResult(response.data.data.message);
+      setSuccess(response.data.success)
       setShowModal(true);
     } catch (err) {
       setUserResult(err.response.data.error);
+      setSuccess(err.response.data.success)
       setShowModal(true);
     }
   };
@@ -62,16 +61,16 @@ const UserWalletPage = () => {
 
   return (
     <MainBackground>
-      <MainTitle>사용자 인증서 발급 페이지</MainTitle>
+      <MainTitle>사용자 지갑</MainTitle>
       <Input
-        label="아이디"
+        label="사용자ID"
         type="text"
         id="userid"
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
       />
       <Input
-        label="소속"
+        label="사용자부서"
         type="text"
         id="affilication"
         value={affilication}
@@ -81,7 +80,7 @@ const UserWalletPage = () => {
       <BackMainLink />
       {showModal && (
         <Modal closeModal={closeModal}>
-          <ResultParagraph>{userResult}</ResultParagraph>
+          <ResultTable result={success ? "Success" : "Fail"} message={userResult} />
         </Modal>
       )}
     </MainBackground>

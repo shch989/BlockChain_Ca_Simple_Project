@@ -9,7 +9,7 @@ export class UserService {
   constructor(private readonly appUtilsService: AppUtilsService, private readonly caUtilsService: CAUtilsService) { }
 
   async createUser(userData: userRequestDto): Promise<any> {
-    const uid = userData.userid
+    const uid = userData.userId
     const affilication = userData.affilication
     try {
       const caClient = this.caUtilsService.buildCAClient();
