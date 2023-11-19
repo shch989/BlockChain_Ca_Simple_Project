@@ -16,16 +16,12 @@ export class UserService {
       const wallet = await this.appUtilsService.buildWallet();
       await this.caUtilsService.registerAndEnrollUser(caClient, wallet, 'Org1MSP', uid, affilication);
 
-      const rObj = {
-        result: 'success',
-        message: `An user id is created - ${uid}`,
-      };
-
+      const rObj = { message: `An user id is created - ${uid}` };
       return rObj;
+      
     } catch (error) {
       console.error(error);
       throw new HttpException({
-        result: 'fail',
         error: error.message,
       }, HttpStatus.INTERNAL_SERVER_ERROR);
     }

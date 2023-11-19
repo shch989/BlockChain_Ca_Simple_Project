@@ -10,20 +10,19 @@ export class AdminService {
   constructor(private readonly appUtilsService: AppUtilsService, private readonly caUtilsService: CAUtilsService) { }
 
   async createAdmin(adminData: AdminRequestDto): Promise<any> {
-    const aid = adminData.adminid 
+    const aid = adminData.adminid
     const apw = adminData.adminpw
     try {
       const caClient = this.caUtilsService.buildCAClient();
       const wallet = await this.appUtilsService.buildWallet();
       await this.caUtilsService.enrollAdmin(caClient, wallet, aid, apw);
 
-      const rObj = { result: "success", message: "An admin id is created" }
+      const rObj = { message: "An admin id is created" }
       return rObj
 
     } catch (error) {
       console.log(error);
       throw new HttpException({
-        result: 'fail',
         error: error.message,
       }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
