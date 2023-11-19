@@ -2,14 +2,15 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 // 외부 서비스
 import { AppUtilsService } from 'src/lib/apputil.service';
 import { CAUtilsService } from 'src/lib/cautil.service';
+import { userRequestDto } from './dtos/UserRequest.dto';
 
 @Injectable()
 export class UserService {
   constructor(private readonly appUtilsService: AppUtilsService, private readonly caUtilsService: CAUtilsService) { }
 
-  private readonly ccp = this.appUtilsService.buildCCPOrg1()
-
-  async createUser(uid: string, affilication: string): Promise<any> {
+  async createUser(userData: userRequestDto): Promise<any> {
+    const uid = userData.userid
+    const affilication = userData.affilication
     try {
       const caClient = this.caUtilsService.buildCAClient();
       const wallet = await this.appUtilsService.buildWallet();

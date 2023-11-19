@@ -1,4 +1,4 @@
-export class AdminRequest {
+export class AdminRequestDto {
   adminid: string;
   adminpw: string;
 }

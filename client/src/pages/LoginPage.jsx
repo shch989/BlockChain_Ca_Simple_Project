@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../components/UI/Input';
+import axios from 'axios';
 
 const Container = styled.div`
   height: 100vh;
@@ -72,21 +73,18 @@ const LoginPage = () => {
 
   const handleAdminSubmit = async () => {
     try {
-      const response = await fetch('http://localhost:8080/admin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ aid: adminId, apw: adminPw }),
+      const response = await axios.post('http://localhost:8080/admin', {
+        adminid: adminId,
+        adminpw: adminPw,
       });
 
-      const data = await response.json();
+      const data = response.data;
       setAdminResult(`RESULT: ${data.result}`);
 
       if (data.result === 'success') {
-        setAdminResult((prevResult) => `${prevResult}\nMESSAGE: ${data.message}`);
+        setAdminResult('관리자 지갑이 생성되었습니다.');
       } else {
-        setAdminResult((prevResult) => `${prevResult}\nERROR: ${data.error}`);
+        setAdminResult(`에러가 발생하였습니다. ${data.error}`);
       }
     } catch (error) {
       console.error('Error submitting admin data:', error);
@@ -113,7 +111,9 @@ const LoginPage = () => {
           onChange={(e) => setAdminPw(e.target.value)}
         />
         <Button onClick={handleAdminSubmit}>생성</Button>
-        <Text>메인 페이지로 <Link to="/">돌아가기</Link></Text>
+        <Text>
+          메인 페이지로 <Link to="/">돌아가기</Link>
+        </Text>
         <ResultParagraph>{adminResult}</ResultParagraph>
       </OuterBox>
     </Container>

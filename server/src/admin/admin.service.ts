@@ -2,15 +2,14 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 // 외부 서비스
 import { AppUtilsService } from 'src/lib/apputil.service';
 import { CAUtilsService } from 'src/lib/cautil.service';
-import * as path from 'path';
 // DTO
-import { AdminRequest } from './dtos/AdminResponse.dto';
+import { AdminRequestDto } from './dtos/AdminResponse.dto';
 
 @Injectable()
 export class AdminService {
   constructor(private readonly appUtilsService: AppUtilsService, private readonly caUtilsService: CAUtilsService) { }
 
-  async createAdmin(adminData: AdminRequest): Promise<any> {
+  async createAdmin(adminData: AdminRequestDto): Promise<any> {
     const aid = adminData.adminid 
     const apw = adminData.adminpw
     try {
