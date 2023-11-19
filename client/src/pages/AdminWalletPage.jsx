@@ -15,9 +15,10 @@ const ResultParagraph = styled.p`
 
 const Button = styled.button`
   display: block;
-  width: 100%;
+  width: 80%;
   padding: 10px;
-  margin-top: 20px;
+  margin: 30px auto;
+  margin-bottom: 0px;
   border: none;
   border-radius: 5px;
   background-color: #008080;
@@ -62,7 +63,7 @@ const AdminWalletPage = () => {
 
   return (
     <MainBackground>
-      <MainTitle>관리자 지갑</MainTitle>
+      <MainTitle>관리자 인증서 발급 페이지</MainTitle>
       <Input
         label="아이디"
         type="text"
@@ -71,7 +72,7 @@ const AdminWalletPage = () => {
         onChange={(e) => setAdminId(e.target.value)}
       />
       <Input
-        label="패스워드"
+        label="비밀번호"
         type="password"
         id="adminpw"
         value={adminPw}

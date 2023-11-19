@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const OuterBox = styled.div`
-  width: 30%;
+  width: 40%;
   padding: 40px;
   background-color: #fff;
   border-radius: 20px;

@@ -10,8 +10,8 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainWalletPage />} />
-        <Route path="/admin-wallet" element={<AdminWalletPage />} />
-        <Route path="/user-wallet" element={<UserWalletPage />} />
+        <Route path="/wallet-admin" element={<AdminWalletPage />} />
+        <Route path="/wallet-user" element={<UserWalletPage />} />
       </Routes>
     </Router>
   )

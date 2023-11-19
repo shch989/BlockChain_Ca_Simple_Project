@@ -15,9 +15,10 @@ const ResultParagraph = styled.p`
 
 const Button = styled.button`
   display: block;
-  width: 100%;
+  width: 80%;
   padding: 10px;
-  margin-top: 20px;
+  margin: 30px auto;
+  margin-bottom: 0px;
   border: none;
   border-radius: 5px;
   background-color: #008080;
@@ -61,7 +62,7 @@ const UserWalletPage = () => {
 
   return (
     <MainBackground>
-      <MainTitle>사용자 지갑</MainTitle>
+      <MainTitle>사용자 인증서 발급 페이지</MainTitle>
       <Input
         label="아이디"
         type="text"
