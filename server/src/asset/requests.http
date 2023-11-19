@@ -1,0 +1,15 @@
+### 자산 추가 POST
+POST http://localhost:8080/asset
+Content-Type: application/json
+
+{
+  "c_cert": "appuser",
+  "id": "asset100",
+  "c_color": "white",
+  "c_size": "100",
+  "c_owner": "semi",
+  "c_value": "30000"
+}
+
+### 자산 조회 GET
+GET http://localhost:8080/asset?c_cert=appuser&id=asset100

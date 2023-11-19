@@ -46,7 +46,7 @@ export class CAUtilsService {
       console.log("Successfully enrolled admin user and imported it into the wallet");
     } catch (error) {
       console.error(`Failed to enroll admin user - ${error}`);
-      throw new Error(`Failed to enroll admin user - ${error}`);
+      throw new Error(error);
     }
   }
 

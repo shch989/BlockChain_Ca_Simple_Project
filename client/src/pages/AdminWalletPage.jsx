@@ -15,7 +15,7 @@ const ResultParagraph = styled.p`
 
 const Button = styled.button`
   display: block;
-  width: 80%;
+  width: 70%;
   padding: 10px;
   margin: 30px auto;
   margin-bottom: 0px;
@@ -42,17 +42,21 @@ const AdminWalletPage = () => {
   const [adminResult, setAdminResult] = useState('');
   const [showModal, setShowModal] = useState(false);
 
-  const handleAdminSubmit = async () => {
+  const handleAdminSubmit = async (event) => {
+    event.preventDefault()
+
     try {
       const response = await axios.post('http://localhost:8080/admin', {
         adminid: adminId,
         adminpw: adminPw,
       });
-  
+
       setAdminResult(response.data.data.message);
       setShowModal(true);
-    } catch (err) {
-      setAdminResult(err.response.data.error);
+      setAdminId('')
+      setAdminPw('')
+    } catch (error) {
+      setAdminResult(error.response.data.error);
       setShowModal(true);
     }
   };
@@ -64,21 +68,23 @@ const AdminWalletPage = () => {
   return (
     <MainBackground>
       <MainTitle>관리자 지갑</MainTitle>
-      <Input
-        label="관리자ID"
-        type="text"
-        id="adminid"
-        value={adminId}
-        onChange={(e) => setAdminId(e.target.value)}
-      />
-      <Input
-        label="비밀번호"
-        type="password"
-        id="adminpw"
-        value={adminPw}
-        onChange={(e) => setAdminPw(e.target.value)}
-      />
-      <Button onClick={handleAdminSubmit}>관리자 인증서 생성</Button>
+      <form onSubmit={handleAdminSubmit}>
+        <Input
+          label="관리자ID"
+          type="text"
+          id="adminid"
+          value={adminId}
+          onChange={(e) => setAdminId(e.target.value)}
+        />
+        <Input
+          label="비밀번호"
+          type="password"
+          id="adminpw"
+          value={adminPw}
+          onChange={(e) => setAdminPw(e.target.value)}
+        />
+        <Button>관리자 인증서 생성</Button>
+      </form>
       <BackMainLink />
       {showModal && (
         <Modal closeModal={closeModal}>

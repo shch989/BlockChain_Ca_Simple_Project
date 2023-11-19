@@ -11,7 +11,7 @@ const ButtonBox = styled.div`
 
 const Button = styled.button`
   display: block;
-  width: 80%;
+  width: 60%;
   padding: 10px;
   margin: 25px auto;
   margin-bottom: 0;
@@ -42,12 +42,23 @@ const MainWalletPage = () => {
   const handleUserWalletClick = () => {
     navigate('/wallet-user');
   };
+
+  const handleCreateAssetClick = () => {
+    navigate('/create-asset');
+  };
+
+  const handleQueryAssetClick = () => {
+    navigate('/query-asset');
+  };
+
   return (
     <MainBackground>
       <MainTitle>지갑 프로토타입 프로젝트</MainTitle>
       <ButtonBox>
         <Button onClick={handleAdminWalletClick}>관리자 지갑 생성</Button>
         <Button onClick={handleUserWalletClick}>사용자 지갑 생성</Button>
+        <Button onClick={handleCreateAssetClick}>자산 생성</Button>
+        <Button onClick={handleQueryAssetClick}>자산 조회</Button>
       </ButtonBox>
     </MainBackground>
   )

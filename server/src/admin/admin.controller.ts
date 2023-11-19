@@ -9,8 +9,8 @@ export class AdminController {
   constructor(private readonly adminService: AdminService) { }
 
   @Post()
-  createAdmin(@Body() adminData: AdminRequestDto) {
-    const admin = this.adminService.createAdmin(adminData)
-    return admin
+  async createAdmin(@Body() adminData: AdminRequestDto) {
+    const adminResult = await this.adminService.createAdmin(adminData)
+    return adminResult
   }
 }

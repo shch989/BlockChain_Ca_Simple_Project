@@ -2,11 +2,11 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
-import { CattleModule } from './cattle/cattle.module';
 import { AdminModule } from './admin/admin.module';
+import { AssetModule } from './asset/asset.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), UserModule, CattleModule, AdminModule,],
+  imports: [ConfigModule.forRoot(), UserModule, AdminModule, AssetModule,],
   controllers: [],
   providers: [],
 })

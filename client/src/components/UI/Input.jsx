@@ -7,18 +7,22 @@ const InputWrapper = styled.label`
 `;
 
 const InputLabel = styled.span`
-  display: block;
+  margin-top: 15px;
   margin-bottom: 5px;
-  font-weight: 200;
+  display: block;
+  font-weight: 500;
+  text-align: center;
 `;
 
 const InputField = styled.input`
-  width: 100%;
+  width: 70%;
   padding: 10px;
+  margin: 0 auto;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
   transition: border-color 0.2s ease-in-out;
+  display: block;
   &:focus {
     outline: none;
     border-color: #4caf50;
@@ -26,13 +30,15 @@ const InputField = styled.input`
 `;
 
 const SelectField = styled.select`
-  width: 100%;
+  width: 70%;
   padding: 10px;
+  margin: 0 auto;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
   transition: border-color 0.2s ease-in-out;
   appearance: none;
+  display: block;
   &:focus {
     outline: none;
     border-color: #4caf50;

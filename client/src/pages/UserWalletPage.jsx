@@ -11,7 +11,7 @@ import ResultTable from '../components/ResultTable';
 
 const Button = styled.button`
   display: block;
-  width: 80%;
+  width: 70%;
   padding: 10px;
   margin: 30px auto;
   margin-bottom: 0px;
@@ -39,7 +39,9 @@ const UserWalletPage = () => {
   const [success, setSuccess] = useState(false)
   const [showModal, setShowModal] = useState(false);
 
-  const handleAdminSubmit = async () => {
+  const handleAdminSubmit = async (event) => {
+    event.preventDefault()
+
     try {
       const response = await axios.post('http://localhost:8080/user', {
         userId,
@@ -49,9 +51,11 @@ const UserWalletPage = () => {
       setUserResult(response.data.data.message);
       setSuccess(response.data.success)
       setShowModal(true);
-    } catch (err) {
-      setUserResult(err.response.data.error);
-      setSuccess(err.response.data.success)
+      setUserId('')
+      setAffilication('')
+    } catch (error) {
+      setUserResult(error.response.data.error);
+      setSuccess(error.response.data.success)
       setShowModal(true);
     }
   };
@@ -62,21 +66,25 @@ const UserWalletPage = () => {
   return (
     <MainBackground>
       <MainTitle>사용자 지갑</MainTitle>
-      <Input
-        label="사용자ID"
-        type="text"
-        id="userid"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
-      />
-      <Input
-        label="사용자부서"
-        type="text"
-        id="affilication"
-        value={affilication}
-        onChange={(e) => setAffilication(e.target.value)}
-      />
-      <Button onClick={handleAdminSubmit}>사용자 인증서 생성</Button>
+      <form onSubmit={handleAdminSubmit}>
+        <Input
+          label="사용자ID"
+          type="text"
+          id="userid"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <Input
+          label="사용자부서"
+          type="select"
+          id="affilication"
+          value={affilication}
+          onChange={(e) => setAffilication(e.target.value)}
+        >
+          <option value="">선택하세요</option>
+          <option value="org1.department1">org1.department1</option></Input>
+        <Button>사용자 인증서 생성</Button>
+      </form>
       <BackMainLink />
       {showModal && (
         <Modal closeModal={closeModal}>

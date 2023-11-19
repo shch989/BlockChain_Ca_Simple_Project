@@ -15,17 +15,20 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  width: 40%;
-  height: auto;
+  min-width: 40vh;
+  max-width: 60vw;
+  min-height: 30vh;
+  max-height: 80vh;
+  overflow-y: auto; 
   background: #fff;
   border-radius: 30px;
-  padding: 20px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 30px
+  font-size: 30px;
 `;
 
 const Modal = ({ children, closeModal }) => {

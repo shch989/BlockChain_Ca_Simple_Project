@@ -23,8 +23,9 @@ const FirstRowTr = styled.tr`
 `;
 
 const FirstColumnTd = styled.td`
-  width: 30%;
+  max-width: 30%;
   border-bottom: 1px solid #ddd;
+  border-right: 2px solid #333; 
   padding: 10px;
   text-align: left;
 `;

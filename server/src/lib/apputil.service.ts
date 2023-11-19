@@ -22,7 +22,7 @@ export class AppUtilsService {
     return ccp;
   }
 
-  async buildWallet(): Promise<any> {
+  async buildWallet(): Promise<Wallet> {
     let wallet: Wallet;
     const walletPath = this.walletPath;
     if (walletPath) {

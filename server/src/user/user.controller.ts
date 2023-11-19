@@ -9,8 +9,8 @@ export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Post()
-  createAdmin(@Body() userData: userRequestDto) {
-    const admin = this.userService.createUser(userData)
-    return admin
+  async createAdmin(@Body() userData: userRequestDto) {
+    const adminResult = await this.userService.createUser(userData)
+    return adminResult
   }
 }
