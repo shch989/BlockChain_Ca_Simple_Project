@@ -1,0 +1,8 @@
+### 회원가입 POST
+POST http://localhost:8080/admin
+Content-Type: application/json
+
+{
+  "aid": "admin",
+  "apw": "981104"
+}
