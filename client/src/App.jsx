@@ -6,6 +6,7 @@ import AdminWalletPage from './pages/AdminWalletPage'
 import UserWalletPage from './pages/UserWalletPage';
 import CreateAssetPage from './pages/CreateAssetPage';
 import QueryAssetPage from './pages/QueryAssetPage';
+import TransferAssetPage from './pages/TransferAssetPage';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/wallet-user" element={<UserWalletPage />} />
         <Route path="/create-asset" element={<CreateAssetPage />} />
         <Route path="/query-asset" element={<QueryAssetPage />} />
+        <Route path="/transfer-asset" element={<TransferAssetPage />} />
       </Routes>
     </Router>
   )

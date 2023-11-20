@@ -20,7 +20,7 @@ chmod +x ccp-generate.sh
 
 # 네트워크 실행 및 체인코드 배포
 ```
-cd ~/fabric-sample/test-network
+cd ~/fabric-samples/test-network
 ```
 ```
 ./network.sh down

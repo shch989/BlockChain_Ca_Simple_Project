@@ -51,6 +51,10 @@ const MainWalletPage = () => {
     navigate('/query-asset');
   };
 
+  const handleTransferAssetClick = () => {
+    navigate('/transfer-asset');
+  };
+
   return (
     <MainBackground>
       <MainTitle>지갑 프로토타입 프로젝트</MainTitle>
@@ -59,6 +63,7 @@ const MainWalletPage = () => {
         <Button onClick={handleUserWalletClick}>사용자 지갑 생성</Button>
         <Button onClick={handleCreateAssetClick}>자산 생성</Button>
         <Button onClick={handleQueryAssetClick}>자산 조회</Button>
+        <Button onClick={handleTransferAssetClick}>자산 전송</Button>
       </ButtonBox>
     </MainBackground>
   )

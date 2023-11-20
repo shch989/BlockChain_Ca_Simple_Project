@@ -4,12 +4,26 @@ Content-Type: application/json
 
 {
   "c_cert": "appuser",
-  "id": "asset100",
-  "c_color": "white",
+  "id": "asset101",
+  "c_color": "blue",
   "c_size": "100",
-  "c_owner": "semi",
-  "c_value": "30000"
+  "c_owner": "student",
+  "c_value": "10000"
 }
 
 ### 자산 조회 GET
-GET http://localhost:8080/asset?c_cert=appuser&id=asset100
+GET http://localhost:8080/asset?c_cert=appuser&id=asset101
+
+### 자산 전송 POST
+POST http://localhost:8080/asset/tx
+Content-Type: application/json
+
+{
+  "c_cert": "appuser",
+  "id": "asset101",
+  "c_owner": "KIM"
+}
+
+
+### 자산 이력 조회 GET
+GET http://localhost:8080/asset/history?c_cert=appuser&id=asset101

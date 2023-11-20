@@ -7,7 +7,6 @@ import BackMainLink from '../components/MainBackLink';
 import MainBackground from '../components/MainBackground';
 import MainTitle from '../components/MainTitle';
 import Modal from '../components/UI/Modal';
-import ResultTable from '../components/ResultTable';
 
 const Button = styled.button`
   display: block;
@@ -32,11 +31,17 @@ const Button = styled.button`
   }
 `;
 
-const QueryAssetPage = () => {
+const ResultParagraph = styled.p`
+  color: #333;
+  font-weight: bold;
+`;
+
+
+const TransferAssetPage = () => {
   const [c_cert, setCert] = useState('');
   const [id, setAssetId] = useState('');
+  const [c_owner, setOwner] = useState('');
   const [assetResult, setAssetResult] = useState('');
-  const [success, setSuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const handleCertChange = (e) => {
@@ -47,38 +52,27 @@ const QueryAssetPage = () => {
     setAssetId(e.target.value);
   };
 
-  const handleQueryAsset = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.get(`http://localhost:8080/asset?c_cert=${c_cert}&id=${id}`);
-
-      setAssetResult(response.data.data.message);
-      setSuccess(response.data.success);
-      setShowModal(true);
-      setCert('');
-      setAssetId('');
-    } catch (error) {
-      setAssetResult(error.response.data.error);
-      setSuccess(error.response.data.success);
-      setShowModal(true);
-    }
+  const handleOwnerChange = (e) => {
+    setOwner(e.target.value);
   };
 
-  const handleHistoryAsset = async (event) => {
-    event.preventDefault();
-
+  const handleCreateAsset = async (event) => {
+    event.preventDefault()
+    
     try {
-      const response = await axios.get(`http://localhost:8080/asset/history?c_cert=${c_cert}&id=${id}`);
+      const response = await axios.post('http://localhost:8080/asset/tx', {
+        c_cert,
+        id,
+        c_owner,
+      });
 
       setAssetResult(response.data.data.message);
-      setSuccess(response.data.success);
       setShowModal(true);
-      setCert('');
-      setAssetId('');
+      setCert('')
+      setAssetId('')
+      setOwner('')
     } catch (error) {
       setAssetResult(error.response.data.error);
-      setSuccess(error.response.data.success);
       setShowModal(true);
     }
   };
@@ -89,8 +83,8 @@ const QueryAssetPage = () => {
 
   return (
     <MainBackground>
-      <MainTitle>자산 조회</MainTitle>
-      <form onSubmit={handleQueryAsset}>
+      <MainTitle>자산 전송</MainTitle>
+      <form onSubmit={handleCreateAsset}>
         <Input
           label="인증서"
           type="text"
@@ -105,18 +99,23 @@ const QueryAssetPage = () => {
           value={id}
           onChange={handleAssetIdChange}
         />
-        <Button type="submit">자산 조회</Button>
+        <Input
+          label="새주인"
+          type="text"
+          id="owner"
+          value={c_owner}
+          onChange={handleOwnerChange}
+        />
+        <Button>자산 전송</Button>
       </form>
-      <Button onClick={handleHistoryAsset }>자산 이력 조회</Button>
-
       <BackMainLink />
       {showModal && (
         <Modal closeModal={closeModal}>
-          <ResultTable result={success ? "Success" : "Fail"} message={JSON.stringify(assetResult)} />
+          <ResultParagraph>{assetResult}</ResultParagraph>
         </Modal>
       )}
     </MainBackground>
   );
 };
 
-export default QueryAssetPage;
+export default TransferAssetPage

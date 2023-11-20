@@ -47,12 +47,22 @@ const ResultTable = (props) => {
       </thead>
       <tbody>
         <TableRow>
-          <FirstColumnTd>RESULT</FirstColumnTd>
+          <FirstColumnTd>Result</FirstColumnTd>
           <Td>{props.result}</Td>
         </TableRow>
         <TableRow>
           <FirstColumnTd>Message</FirstColumnTd>
-          <Td>{props.message}</Td>
+          <Td>
+            {Array.isArray(props.message) && props.message.length > 0 ? (
+              <ul>
+                {props.message.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <Td>{props.message}</Td>
+            )}
+          </Td>
         </TableRow>
       </tbody>
     </Table>
