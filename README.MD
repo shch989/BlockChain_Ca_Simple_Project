@@ -1,4 +1,4 @@
-# 해당 프로젝트는 Hyperledger Fabric의 예시 코드를 React와 NestJS환경에서 구현한 프로젝트입니다.
+# Hyperledger Fabric의 예시 코드를 React와 NestJS환경에서 구현한 프로젝트입니다.
 ## 기존 네트워크 초기화
 ```
 ./startnetwork.sh
